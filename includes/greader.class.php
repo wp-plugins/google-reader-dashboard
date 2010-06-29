@@ -23,7 +23,7 @@ class JDMReader {
 	private $_username;
 	private $_password;
 	private $_sid;
-
+	private $_auth;
 	private $_token;
 	private $_cookie;
 	
@@ -52,7 +52,8 @@ class JDMReader {
 		$url = "http://www.google.com/reader/api/0/token";
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_COOKIE, $this->_cookie);
+//		curl_setopt($ch, CURLOPT_COOKIE, $this->_cookie);		// This was the old authentication method
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/x-www-form-urlencoded', 'Authorization: GoogleLogin auth=' . $this->_auth));		// This, apparently, is the new one.
 		curl_setopt($ch, CURLOPT_URL, $url);
 
 		ob_start();
@@ -61,6 +62,7 @@ class JDMReader {
 		curl_close($ch);
 
 		$this->_token = ob_get_contents();
+
 		ob_end_clean();
 	}
 
@@ -80,8 +82,10 @@ class JDMReader {
 
 		$sidIndex = strpos($data, "SID=")+4;
 		$lsidIndex = strpos($data, "LSID=")-5;
+		$authIndex = strpos($data, "Auth=")+5;
 
 		$this->_sid = substr($data, $sidIndex, $lsidIndex);
+		$this->_auth = substr($data, $authIndex, strlen($data));
 	}
 	
 	private function _validateUser($user, $pass) {
@@ -111,7 +115,8 @@ class JDMReader {
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		if($https === true) curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt($ch, CURLOPT_COOKIE, $this->_cookie);
+//		curl_setopt($ch, CURLOPT_COOKIE, $this->_cookie);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/x-www-form-urlencoded', 'Authorization: GoogleLogin auth=' . $this->_auth));
 
 		ob_start();
         
@@ -139,7 +144,8 @@ class JDMReader {
 		curl_setopt($ch,CURLOPT_POST,count($fields));
 		curl_setopt($ch,CURLOPT_POSTFIELDS,$fields_string);
 		if($https === true) curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, false );
-		curl_setopt($ch, CURLOPT_COOKIE, $this->_cookie);
+//		curl_setopt($ch, CURLOPT_COOKIE, $this->_cookie);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/x-www-form-urlencoded', 'Authorization: GoogleLogin auth=' . $this->_auth));
 		
 		try {
 			$result = curl_exec($ch);
@@ -171,6 +177,7 @@ class JDMReader {
 		
 		$decoded_data = json_decode($data, true);
 		$feed_items = $decoded_data['items'];
+
 		foreach($feed_items as $article) {
 			$out .= "<li>";
 			$out .= '<a class="rsswidget grdLink" href="' . $article['alternate'][0]['href'] . '" target="_blank">';

@@ -4,7 +4,7 @@ Donate link: http://jumping-duck.com/wordpress
 Tags: google reader, feed
 Requires at least: 2.9
 Tested up to: 3.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 Adds a feed of your latest unread items from Google Reader.
 
@@ -35,6 +35,9 @@ If you see a bug or have a feature request, please make a comment in our bug tra
 1. This screenshot shows how the widget renders amidst other feed readers and admin page widgets.
 
 == Changelog ==
+
+= 1.0.1 =
+* Changed authentication method to fix error caused by Google's API.
 
 = 1.0.0 =
 * First Release

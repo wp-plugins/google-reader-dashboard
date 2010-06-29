@@ -3,7 +3,7 @@
 Plugin Name: Google Reader Dashboard
 Plugin URI: http://www.jumping-duck.com/wordpress/
 Description: Adds a Google Reader dashboard widget to the WordPress admin screen.
-Version: 1.0.0
+Version: 1.0.1
 Author: Eric Mann
 Author URI: http://www.eamann.com
 License: GPL2
