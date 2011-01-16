@@ -3,7 +3,7 @@
 Plugin Name: Google Reader Dashboard
 Plugin URI: http://www.jumping-duck.com/wordpress/
 Description: Adds a Google Reader dashboard widget to the WordPress admin screen.
-Version: 1.0.1
+Version: 1.1.0
 Author: Eric Mann
 Author URI: http://www.eamann.com
 License: GPL2
@@ -26,27 +26,18 @@ License: GPL2
 */
 
 // Define global variables and constants
-global $grd_reporter;
-if( ! defined( 'GRD_VER' ))
-	define( 'GRD_VER', '1.0.0' );
-if( ! defined( 'GRD_URL' ) )
-	define( 'GRD_URL', get_bloginfo('url') . '/wp-content/plugins/google-reader-dashboard' );
-if( ! defined( 'GRD_INC_URL' ) )
-	define( 'GRD_INC_URL', GRD_URL . '/includes');
-if( ! defined( 'GRD_BASE_URL' ) )
-	define( 'GRD_BASE_URL', dirname(__FILE__) );	
-if( ! defined( 'GRD_BASE_INC_URL' ) )
-	define( 'GRD_BASE_INC_URL', GRD_BASE_URL . '/includes');
+if ( ! defined( 'GRD_VER' ) ) define( 'GRD_VER', '1.1.0' );
+if ( ! defined( 'GRD_URL' ) ) define( 'GRD_URL', get_bloginfo('url') . '/wp-content/plugins/google-reader-dashboard' );
+if ( ! defined( 'GRD_INC_URL' ) ) define( 'GRD_INC_URL', GRD_URL . '/includes');
+if ( ! defined( 'GRD_BASE_URL' ) ) define( 'GRD_BASE_URL', dirname(__FILE__) );	
+if ( ! defined( 'GRD_BASE_INC_URL' ) ) define( 'GRD_BASE_INC_URL', GRD_BASE_URL . '/includes');
 
-/* Activate Error Reporter */
-//include_once( GRD_BASE_INC_URL . '/elliot.class.php' );
-if(class_exists('ElliotClientV1')) $grd_reporter = new ElliotClientV1('http://jumping-duck.com/xmlrpc.php', 'Google Reader Dashboard', GRD_VER);
+// Add framework dependency loader and register the Google Reader Library
+include_once( GRD_BASE_INC_URL . '/class.wp-frameworks.php');
+wp_register_framework( 'greader', GRD_BASE_INC_URL . '/greader.class.php');
 
-$installed=get_option('GRD_Installed_Version');
-
-if(!$installed) {
-	update_option('GRD_Installed_Version', '1.0.0');
-	if(class_exists('ElliotClientV1')) $grd_reporter->dispatch('New Installation');
+if ( ! get_option( 'GRD_Installed_Version' ) ) {
+	update_option( 'GRD_Installed_Version', '1.1.0' );
 }
 
 /*

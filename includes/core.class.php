@@ -57,7 +57,8 @@ class GRDplugin {
 	}
 	
 	private function _load_reader($user, $password) {
-		include_once(GRD_BASE_INC_URL . '/greader.class.php');
+		wp_load_framework( 'greader' );
+
 		$this->reader = new JDMReader($user, $password);
 		$this->_readerLoaded = $this->reader->loaded;
 	}

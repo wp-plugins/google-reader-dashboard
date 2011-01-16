@@ -3,14 +3,12 @@ Contributors: ericmann
 Donate link: http://jumping-duck.com/wordpress
 Tags: google reader, feed
 Requires at least: 2.9
-Tested up to: 3.0
-Stable tag: 1.0.1
+Tested up to: 3.1
+Stable tag: 1.1.0
 
 Adds a feed of your latest unread items from Google Reader.
 
 == Description ==
-
-NOTICE: THIS PLUG-IN REQUIRES PHP5!!!
 
 Add your Google Reader feed to the WordPress admin dashboard.
 
@@ -35,6 +33,11 @@ If you see a bug or have a feature request, please make a comment in our bug tra
 1. This screenshot shows how the widget renders amidst other feed readers and admin page widgets.
 
 == Changelog ==
+
+= 1.1.0 =
+* Remove insecure Elliot dependency
+* Add experimental framework loader
+* Update GReader library to current version
 
 = 1.0.1 =
 * Changed authentication method to fix error caused by Google's API.
