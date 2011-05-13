@@ -3,8 +3,8 @@ Contributors: ericmann
 Donate link: http://jumping-duck.com/wordpress
 Tags: google reader, feed
 Requires at least: 2.9
-Tested up to: 3.1
-Stable tag: 1.1.0
+Tested up to: 3.2
+Stable tag: 1.1.1
 
 Adds a feed of your latest unread items from Google Reader.
 

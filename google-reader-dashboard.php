@@ -3,7 +3,7 @@
 Plugin Name: Google Reader Dashboard
 Plugin URI: http://www.jumping-duck.com/wordpress/
 Description: Adds a Google Reader dashboard widget to the WordPress admin screen.
-Version: 1.1.0
+Version: 1.1.1
 Author: Eric Mann
 Author URI: http://www.eamann.com
 License: GPL2
@@ -26,7 +26,7 @@ License: GPL2
 */
 
 // Define global variables and constants
-if ( ! defined( 'GRD_VER' ) ) define( 'GRD_VER', '1.1.0' );
+if ( ! defined( 'GRD_VER' ) ) define( 'GRD_VER', '1.1.1' );
 if ( ! defined( 'GRD_URL' ) ) define( 'GRD_URL', get_bloginfo('url') . '/wp-content/plugins/google-reader-dashboard' );
 if ( ! defined( 'GRD_INC_URL' ) ) define( 'GRD_INC_URL', GRD_URL . '/includes');
 if ( ! defined( 'GRD_BASE_URL' ) ) define( 'GRD_BASE_URL', dirname(__FILE__) );	
@@ -37,7 +37,7 @@ include_once( GRD_BASE_INC_URL . '/class.wp-frameworks.php');
 wp_register_framework( 'greader', GRD_BASE_INC_URL . '/greader.class.php');
 
 if ( ! get_option( 'GRD_Installed_Version' ) ) {
-	update_option( 'GRD_Installed_Version', '1.1.0' );
+	update_option( 'GRD_Installed_Version', '1.1.1' );
 }
 
 /*
