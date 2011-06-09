@@ -6,9 +6,12 @@ Requires at least: 2.9
 Tested up to: 3.2
 Stable tag: 1.1.1
 
-Adds a feed of your latest unread items from Google Reader.
+*CURRENTLY BROKEN* - Adds a feed of your latest unread items from Google Reader.
 
 == Description ==
+
+*NOTICE*
+Google Reader Dashboard is currently broken as of version 1.1.1 and is being rewritten to adapt to some changes in Google's API. Please check this space for version 1.2 when it becomes available.
 
 Add your Google Reader feed to the WordPress admin dashboard.
 
